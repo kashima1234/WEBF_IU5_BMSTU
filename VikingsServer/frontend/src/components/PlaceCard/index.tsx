@@ -25,7 +25,7 @@ const PlaceCard = ({place, isMock}: PlaceCardProps) => {
                 </CardText>
                 <Link to={`/places/${place.id}`}>
                     <Button color="primary">
-                        Открыть
+                    подробнее
                     </Button>
                 </Link>
             </CardBody>
