@@ -30,7 +30,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
 const host = process.env.TAURI_DEV_HOST;
 
 export default defineConfig({
-    base: "/frontend",
+    base: "/WEBF_IU5_BMSTU",
     plugins: [
         react(),
         tsconfigPaths(),
@@ -43,7 +43,7 @@ export default defineConfig({
         host: host || false,
         proxy: {
             "/api": {
-                target: "http://192.168.1.73:8000"
+                target: "http://192.168.0.105:8000"
             }
         },
         watch: {
