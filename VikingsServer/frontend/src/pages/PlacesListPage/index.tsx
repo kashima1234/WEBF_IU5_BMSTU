@@ -68,7 +68,7 @@ const PlacesListPage = ({places, setPlaces, isMock, setIsMock}:Props) => {
             </Row>
             <Row>
                 {places?.map(place => (
-                    <Col key={place.id} sm="12" md="6" lg="4">
+                    <Col key={place.id} sm="12" md="6" lg="4">            
                         <PlaceCard place={place} isMock={isMock} />
                     </Col>
                 ))}
