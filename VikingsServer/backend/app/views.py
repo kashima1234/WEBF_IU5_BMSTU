@@ -1,3 +1,6 @@
+import random
+from datetime import datetime, timedelta
+
 from django.contrib.auth import authenticate
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
@@ -5,7 +8,6 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .management.commands.fill_db import calc
 from .serializers import *
 
 
@@ -208,6 +210,11 @@ def update_status_user(request, expedition_id):
     return Response(serializer.data)
 
 
+def random_date():
+    now = datetime.now(tz=timezone.utc)
+    return now + timedelta(random.uniform(-1, 0) * 100)
+
+
 @api_view(["PUT"])
 def update_status_admin(request, expedition_id):
     if not Expedition.objects.filter(pk=expedition_id).exists():
@@ -224,7 +231,7 @@ def update_status_admin(request, expedition_id):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     if request_status == 3:
-        expedition.date = calc()
+        expedition.date = random_date()
 
     expedition.date_complete = timezone.now()
     expedition.status = request_status
@@ -261,7 +268,7 @@ def delete_place_from_expedition(request, expedition_id, place_id):
     item.delete()
 
     items = PlaceExpedition.objects.filter(expedition_id=expedition_id)
-    data = [PlaceItemSerializer(item.place, context={"value": item.value}).data for item in items]
+    data = [PlaceItemSerializer(item.place, context={"order": item.order}).data for item in items]
 
     return Response(data, status=status.HTTP_200_OK)
 

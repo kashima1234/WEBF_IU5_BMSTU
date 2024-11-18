@@ -1,23 +1,44 @@
-// @ts-nocheck
 import * as React from 'react';
 import {useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {CardImg, Col, Container, Row} from "reactstrap";
 import mockImage from "assets/mock.png";
-import {fetchPlace, removeSelectedPlace} from "src/store/slices/placesSlice.ts";
-import {useAppDispatch, useAppSelector} from "src/store/store.ts";
+import {T_Place} from "modules/types.ts";
+import {PlaceMocks} from "modules/mocks.ts";
 
+type Props = {
+    selectedPlace: T_Place | null,
+    setSelectedPlace: React.Dispatch<React.SetStateAction<T_Place | null>>,
+    isMock: boolean,
+    setIsMock: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-const PlacePage = () => {
+const PlacePage = ({selectedPlace, setSelectedPlace, isMock, setIsMock}: Props) => {
     const { id } = useParams<{id: string}>();
 
-    const dispatch = useAppDispatch()
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`/api/places/${id}`)
+            const data = await response.json()
+            setSelectedPlace(data)
+        } catch {
+            createMock()
+        }
+    }
 
-    const {selectedPlace, isMock} = useAppSelector((state) => state.places)
+    const createMock = () => {
+        setIsMock(true)
+        setSelectedPlace(PlaceMocks.find(place => place?.id == parseInt(id as string)) as T_Place)
+    }
 
     useEffect(() => {
-        dispatch(fetchPlace(id))
-        return () => dispatch(removeSelectedPlace())
+        if (!isMock) {
+            fetchData()
+        } else {
+            createMock()
+        }
+
+        return () => setSelectedPlace(null)
     }, []);
 
     if (!selectedPlace) {

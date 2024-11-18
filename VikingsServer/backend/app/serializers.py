@@ -18,9 +18,9 @@ class PlacesSerializer(serializers.ModelSerializer):
 
 
 class PlaceSerializer(PlacesSerializer):
-    class Meta(PlacesSerializer.Meta):
+    class Meta:
         model = Place
-        fields = PlacesSerializer.Meta.fields + ("description", )
+        fields = "__all__"
 
 
 class ExpeditionsSerializer(serializers.ModelSerializer):
@@ -37,17 +37,18 @@ class ExpeditionSerializer(ExpeditionsSerializer):
             
     def get_places(self, expedition):
         items = PlaceExpedition.objects.filter(expedition=expedition)
-        return [PlaceItemSerializer(item.place, context={"value": item.value}).data for item in items]
+        return [PlaceItemSerializer(item.place, context={"order": item.order}).data for item in items]
 
 
 class PlaceItemSerializer(PlaceSerializer):
-    value = serializers.SerializerMethodField()
+    order = serializers.SerializerMethodField()
 
-    def get_value(self, place):
-        return self.context.get("value")
+    def get_order(self, _):
+        return self.context.get("order")
 
-    class Meta(PlaceSerializer.Meta):
-        fields = "__all__"
+    class Meta:
+        model = Place
+        fields = ("id", "name", "square", "image", "order")
 
 
 class PlaceExpeditionSerializer(serializers.ModelSerializer):

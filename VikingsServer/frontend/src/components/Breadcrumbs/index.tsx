@@ -1,18 +1,18 @@
 import {Breadcrumb, BreadcrumbItem} from "reactstrap";
 import {Link, useLocation} from "react-router-dom";
-import {isHomePage, isPlacePage} from "utils/utils.ts";
-import {RootState, useAppSelector} from "src/store/store.ts";
+import {T_Place} from "modules/types.ts";
 
+type Props = {
+    selectedPlace: T_Place | null
+}
 
-const Breadcrumbs = () => {
-
-    const {selectedPlace} = useAppSelector((state:RootState) => state.places)
+const Breadcrumbs = ({selectedPlace}:Props) => {
 
     const location = useLocation()
 
     return (
         <Breadcrumb className="fs-5">
-			{isHomePage(location.pathname) &&
+			{location.pathname == "/" &&
 				<BreadcrumbItem>
 					<Link to="/">
 						Главная
@@ -26,10 +26,10 @@ const Breadcrumbs = () => {
                     </Link>
                 </BreadcrumbItem>
 			}
-            {isPlacePage(location.pathname) &&
+            {selectedPlace &&
                 <BreadcrumbItem active>
                     <Link to={location.pathname}>
-                        { selectedPlace?.name }
+                        { selectedPlace.name }
                     </Link>
                 </BreadcrumbItem>
             }

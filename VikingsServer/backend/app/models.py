@@ -23,6 +23,7 @@ class Place(models.Model):
         verbose_name = "Город"
         verbose_name_plural = "Города"
         db_table = "places"
+        ordering = ("pk",)
 
 
 class Expedition(models.Model):
@@ -58,7 +59,7 @@ class Expedition(models.Model):
 class PlaceExpedition(models.Model):
     place = models.ForeignKey(Place, on_delete=models.DO_NOTHING, blank=True, null=True)
     expedition = models.ForeignKey(Expedition, on_delete=models.DO_NOTHING, blank=True, null=True)
-    value = models.IntegerField(verbose_name="Поле м-м", default=0)
+    order = models.IntegerField(verbose_name="Поле м-м", default=1)
 
     def __str__(self):
         return "м-м №" + str(self.pk)
@@ -67,6 +68,7 @@ class PlaceExpedition(models.Model):
         verbose_name = "м-м"
         verbose_name_plural = "м-м"
         db_table = "place_expedition"
+        ordering = ('pk', )
         constraints = [
             models.UniqueConstraint(fields=['place', 'expedition'], name="place_expedition_constraint")
         ]

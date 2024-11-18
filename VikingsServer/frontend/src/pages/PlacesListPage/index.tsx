@@ -1,28 +1,53 @@
-// @ts-nocheck
 import {Button, Col, Container, Form, Input, Row} from "reactstrap";
 import PlaceCard from "components/PlaceCard";
-import {ChangeEvent, useEffect} from "react";
+import {ChangeEvent, FormEvent, useEffect} from "react";
 import * as React from "react";
-import {useAppDispatch, useAppSelector} from "src/store/store.ts";
-import {fetchPlaces, updatePlaceName} from "src/store/slices/placesSlice.ts";
+import {useAppSelector} from "src/store/store.ts";
+import {updatePlaceName} from "src/store/slices/placesSlice.ts";
+import {T_Place} from "modules/types.ts";
+import {PlaceMocks} from "modules/mocks.ts";
+import {useDispatch} from "react-redux";
 
-const PlacesListPage = () => {
+type Props = {
+    places: T_Place[],
+    setPlaces: React.Dispatch<React.SetStateAction<T_Place[]>>
+    isMock: boolean,
+    setIsMock: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-    const dispatch = useAppDispatch()
+const PlacesListPage = ({places, setPlaces, isMock, setIsMock}:Props) => {
 
-    const {places, place_name, isMock} = useAppSelector((state) => state.places)
+    const dispatch = useDispatch()
+
+    const {place_name} = useAppSelector((state) => state.places)
 
     const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
         dispatch(updatePlaceName(e.target.value))
     }
 
-    const handleSubmit = (e) => {
+    const createMocks = () => {
+        setIsMock(true)
+        setPlaces(PlaceMocks.filter(place => place.name.toLowerCase().includes(place_name.toLowerCase())))
+    }
+
+    const handleSubmit = async (e:FormEvent) => {
         e.preventDefault()
-        dispatch(fetchPlaces())
+        await fetchPlaces()
+    }
+
+    const fetchPlaces = async () => {
+        try {
+            const response = await fetch(`/api/places/?place_name=${place_name.toLowerCase()}`)
+            const data = await response.json()
+            setPlaces(data.places)
+            setIsMock(false)
+        } catch {
+            createMocks()
+        }
     }
 
     useEffect(() => {
-        dispatch(fetchPlaces())
+        fetchPlaces()
     }, []);
 
     return (
@@ -35,7 +60,7 @@ const PlacesListPage = () => {
                                 <Input value={place_name} onChange={handleChange} placeholder="Поиск..."></Input>
                             </Col>
                             <Col>
-                                <Button color="primary" className="w-100">Поиск</Button>
+                                <Button color="primary" className="w-100 search-btn">Поиск</Button>
                             </Col>
                         </Row>
                     </Form>

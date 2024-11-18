@@ -6,8 +6,3 @@ export type T_Place =  {
     image: string,
     status: number
 }
-
-export interface IRequestResponse<T> {
-    success: boolean
-    data: T
-}

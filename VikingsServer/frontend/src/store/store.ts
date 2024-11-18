@@ -1,5 +1,5 @@
-import {configureStore, ThunkDispatch} from "@reduxjs/toolkit";
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import {configureStore} from "@reduxjs/toolkit";
+import {TypedUseSelectorHook, useSelector} from "react-redux";
 import placesReducer from "./slices/placesSlice.ts"
 
 export const store = configureStore({
@@ -9,7 +9,4 @@ export const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>
-export type AppThunkDispatch = ThunkDispatch<RootState, never, never>
-
-export const useAppDispatch = () => useDispatch<AppThunkDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

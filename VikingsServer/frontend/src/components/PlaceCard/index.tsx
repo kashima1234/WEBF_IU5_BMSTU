@@ -2,7 +2,6 @@ import {Button, Card, CardBody, CardImg, CardText, CardTitle} from "reactstrap";
 import mockImage from "assets/mock.png";
 import {Link} from "react-router-dom";
 import {T_Place} from "modules/types.ts";
-//import {truncate} from "utils/utils.ts";
 
 interface PlaceCardProps {
     place: T_Place,
@@ -21,7 +20,7 @@ const PlaceCard = ({place, isMock}: PlaceCardProps) => {
                     {place.name}
                 </CardTitle>
                 <CardText>
-                    Площадь: {place.square} km²
+                    Площадь: {place.square}km².
                 </CardText>
                 <Link to={`/places/${place.id}`}>
                     <Button color="primary">
