@@ -51,5 +51,5 @@ Deployment диаграмма все узлы и компоненты систе
 
 диаграмму развертывания
 
-![er](Resources/git.png)
+![er](Resources/er.png)
 ## ;)
