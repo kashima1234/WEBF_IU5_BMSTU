@@ -110,13 +110,13 @@ services:
       - REDIS_PORT=6379
       - REDIS_DATABASES=16
       
-  # frontend:
-  #    build: ./frontend
-  #    container_name: frontend
-  #    ports:
-  #      - "3000:3000"
-  #    environment:
-  #      - VITE_API_URL=http://django:8000
+  frontend:
+     build: ./frontend
+     container_name: frontend
+     ports:
+       - "3000:3000"
+     environment:
+       - VITE_API_URL=http://django:8000
 
 volumes:
   pgdbdata: null
