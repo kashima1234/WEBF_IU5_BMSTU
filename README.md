@@ -5,7 +5,8 @@
 </div>
 
 ## Frontend:
-<img align="right" src="Resources/image.png" width="360px" height="360px"/>  
+<!-- <img align="right" src="Resources/image.png" width="360px" height="360px"/>   -->
+<img align="right" src="Resources/1.png" width="360px" height="360px"/>  
 
 <!-- <style>
   .small-image {
@@ -19,5 +20,5 @@
 
 - [X] [05-lab-05-Ahmedkashima](https://github.com/kashima1234/WEBF_IU5_BMSTU/tree/frontend/SPA)
 - [X] [05-lab-06-Ahmedkashima](https://github.com/kashima1234/WEBF_IU5_BMSTU/tree/frontend/Redux)
-- [X] [05-lab-07-Ahmedkashima](https://github.com/kashima1234/WEBF_IU5_BMSTU/tree/frontend/ser-interface)
+- [X] [05-lab-07-Ahmedkashima](https://github.com/kashima1234/WEBF_IU5_BMSTU/tree/frontend/user-interface)
 - [X] [05-lab-08-Ahmedkashima](https://github.com/kashima1234/WEBF_IU5_BMSTU/tree/Real-time)
