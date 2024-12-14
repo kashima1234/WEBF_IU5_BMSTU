@@ -5,16 +5,16 @@
 </div>
 
 ## Frontend:
-<!-- <img align="right" src="Resources/image.png" height="360px"/>   -->
+<img align="right" src="Resources/image.png" width="160px" height="360px"/>  
 
-<style>
+<!-- <style>
   .small-image {
-    width: 260px;
+    width: 160px;
     height: 360px;
   }
 </style>
 
-<img align="right" src="Resources/image.png" class="small-image" />
+<img align="right" src="Resources/image.png" class="small-image" /> -->
 
 
 - [X] [05-lab-05-Ahmedkashima](https://github.com/kashima1234/WEBF_IU5_BMSTU/tree/frontend/SPA)
