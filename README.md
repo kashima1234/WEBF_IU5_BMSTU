@@ -5,7 +5,7 @@
 </div>
 
 ## Frontend:
-<img align="right" src="Resources/image.png" width="160px" height="360px"/>  
+<img align="right" src="Resources/image.png" width="360px" height="360px"/>  
 
 <!-- <style>
   .small-image {
