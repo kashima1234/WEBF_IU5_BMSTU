@@ -6,7 +6,7 @@
 
 ## Frontend:
 <!-- <img align="right" src="Resources/image.png" width="360px" height="360px"/>   -->
-<img align="right" src="Resources/1.png" width="360px" height="360px"/>  
+<img align="right" src="Resources/1.jpg" width="360px" height="360px"/>  
 
 <!-- <style>
   .small-image {
