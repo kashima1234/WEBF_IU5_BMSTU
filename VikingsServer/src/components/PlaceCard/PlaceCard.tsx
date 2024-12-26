@@ -3,11 +3,9 @@ import {Link, useLocation} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "store/store.ts";
 import {T_Place} from "modules/types.ts";
 import {
-    removePlaceFromDraftExpedition,
-    updatePlaceValue
+    fetchDraftExpedition,
+    removePlaceFromDraftExpedition, updatePlaceOrder
 } from "store/slices/expeditionsSlice.ts";
-import {useEffect, useState} from "react";
-import CustomInput from "components/CustomInput/CustomInput.tsx";
 import {addPlaceToExpedition, fetchPlaces} from "store/slices/placesSlice.ts";
 
 type Props = {
@@ -23,10 +21,6 @@ const PlaceCard = ({place, showAddBtn=false, showRemoveBtn=false, editMM=false}:
 
     const {is_superuser} = useAppSelector((state) => state.user)
 
-    const {save_mm} = useAppSelector(state => state.expeditions)
-
-    const [local_order, setLocal_order] = useState(place.order)
-
     const location = useLocation()
 
     const isExpeditionPage = location.pathname.includes("expeditions")
@@ -40,15 +34,9 @@ const PlaceCard = ({place, showAddBtn=false, showRemoveBtn=false, editMM=false}:
         await dispatch(removePlaceFromDraftExpedition(place.id))
     }
 
-    useEffect(() => {
-        save_mm && updateValue()
-    }, [save_mm]);
-
-    const updateValue = async () => {
-        dispatch(updatePlaceValue({
-            place_id: place.id,
-            order: local_order
-        }))
+    const handleShuffleCards = async () =>{
+        await dispatch(updatePlaceOrder(place.id))
+        await dispatch(fetchDraftExpedition())
     }
 
     if (isExpeditionPage) {
@@ -70,13 +58,17 @@ const PlaceCard = ({place, showAddBtn=false, showRemoveBtn=false, editMM=false}:
                             <CardText>
                                 Площадь: {place.square}km².
                             </CardText>
-                            <CustomInput label="Порядковый номер" type="number" value={local_order} setValue={setLocal_order} disabled={!editMM || is_superuser} className={"w-25"}/>
                             <Col className="d-flex gap-5">
                                 <Link to={`/places/${place.id}`}>
                                     <Button color="primary" type="button">
                                         Открыть
                                     </Button>
                                 </Link>
+                                {editMM &&
+                                    <Button color="primary" type="button" onClick={handleShuffleCards}>
+                                        Вниз
+                                    </Button>
+                                }
                                 {showRemoveBtn &&
                                     <Button color="danger" onClick={handleRemoveFromDraftExpedition}>
                                         Удалить

@@ -1,4 +1,4 @@
-export const formatDate = (value:string, is_datetime:boolean) => {
+export const formatDate = (value:string, is_datetime=false) => {
     if (value) {
         const format = is_datetime ? {
             month: "long",

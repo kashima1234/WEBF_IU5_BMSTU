@@ -18,7 +18,7 @@ export type T_Expedition = {
     moderator: string
     places: T_Place[]
     viking: string
-    date: string
+    count: string
 }
 
 export enum E_ExpeditionStatus {

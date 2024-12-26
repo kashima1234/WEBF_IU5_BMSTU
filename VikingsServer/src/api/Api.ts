@@ -38,25 +38,11 @@ export interface Expedition {
   /** Viking */
   viking?: string | null;
   /**
-   * Date
-   * @format date
-   */
-  date?: string | null;
-}
-
-export interface PlaceExpedition {
-  /** ID */
-  id?: number;
-  /**
-   * Поле м-м
+   * Count
    * @min -2147483648
    * @max 2147483647
    */
-  order?: number;
-  /** Place */
-  place?: number | null;
-  /** Expedition */
-  expedition?: number | null;
+  count?: number | null;
 }
 
 export interface UpdateExpeditionStatusAdmin {
@@ -418,19 +404,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request PUT:/expeditions/{expedition_id}/update_place/{place_id}/
      * @secure
      */
-    expeditionsUpdatePlaceUpdate: (
-      expeditionId: string,
-      placeId: string,
-      data: PlaceExpedition,
-      params: RequestParams = {},
-    ) =>
-      this.request<PlaceExpedition, any>({
+    expeditionsUpdatePlaceUpdate: (expeditionId: string, placeId: string, params: RequestParams = {}) =>
+      this.request<void, any>({
         path: `/expeditions/${expeditionId}/update_place/${placeId}/`,
         method: "PUT",
-        body: data,
         secure: true,
-        type: ContentType.Json,
-        format: "json",
         ...params,
       }),
 

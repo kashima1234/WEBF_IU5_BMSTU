@@ -59,9 +59,6 @@ const RegisterPage = () => {
                                     <Input placeholder="Пароль" type="password" id="password-input" required/>
                                 </FormGroup>
                                 <Row className="justify-content-center mt-4">
-                                    <Link to="/login/" style={{textAlign: "center"}}>Уже есть аккаунт? Войти</Link>
-                                </Row>
-                                <Row className="justify-content-center mt-4">
                                     <Button color="primary" className="w-75">
                                         Зарегистрироваться
                                     </Button>

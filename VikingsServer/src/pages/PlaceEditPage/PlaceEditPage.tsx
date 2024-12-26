@@ -108,7 +108,7 @@ const PlaceEditPage = () => {
                 <Col md={6}>
                     <CustomInput label="Название" placeholder="Введите название" value={name} setValue={setName}/>
                     <CustomTextarea label="Описание" placeholder="Введите описание" value={description} setValue={setDescription}/>
-                    <CustomInput label="Площадь" placeholder="Введите цену" value={square} setValue={setSquare}/>
+                    <CustomInput label="Площадь" placeholder="Введите площадь" type="number" value={square} setValue={setSquare}/>
                     <Col className="d-flex justify-content-center gap-5 mt-5">
                         <Button color="success" className="fs-4" onClick={savePlace}>Сохранить</Button>
                         <Button color="danger" className="fs-4" onClick={handleDeletePlace}>Удалить</Button>

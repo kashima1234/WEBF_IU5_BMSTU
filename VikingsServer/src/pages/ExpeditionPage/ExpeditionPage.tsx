@@ -11,7 +11,6 @@ import {Button, Col, Form, Row} from "reactstrap";
 import {E_ExpeditionStatus, T_Place} from "modules/types.ts";
 import PlaceCard from "components/PlaceCard/PlaceCard.tsx";
 import CustomInput from "components/CustomInput/CustomInput.tsx";
-import {formatDate} from "utils/utils.ts";
 
 const ExpeditionPage = () => {
     const { id } = useParams<{id: string}>();
@@ -24,9 +23,9 @@ const ExpeditionPage = () => {
 
     const expedition = useAppSelector((state) => state.expeditions.expedition)
 
-    const [viking, setViking] = useState<string>(expedition?.expedition_field)
+    const [viking, setViking] = useState<string>(expedition?.viking)
 
-    const [date, setDate] = useState<string>(expedition?.date)
+    const [count, setCount] = useState<string>(expedition?.count)
 
     useEffect(() => {
         if (!is_authenticated) {
@@ -41,7 +40,7 @@ const ExpeditionPage = () => {
 
     useEffect(() => {
         setViking(expedition?.viking)
-        setDate(expedition?.date)
+        setCount(expedition?.count)
     }, [expedition]);
 
     const sendExpedition = async (e) => {
@@ -51,7 +50,7 @@ const ExpeditionPage = () => {
 
         await dispatch(sendDraftExpedition())
 
-        navigate("/expeditions")
+        navigate("/expeditions/")
     }
 
     const saveExpedition = async (e?) => {
@@ -62,13 +61,11 @@ const ExpeditionPage = () => {
         }
 
         await dispatch(updateExpedition(data))
-        await dispatch(triggerUpdateMM())
-        await dispatch(triggerUpdateMM())
     }
 
     const deleteExpedition = async () => {
         await dispatch(deleteDraftExpedition())
-        navigate("/places")
+        navigate("/places/")
     }
 
     if (!expedition) {
@@ -85,7 +82,7 @@ const ExpeditionPage = () => {
             <h2 className="mb-5">{isDraft ? "Черновой поход" : `Поход №${id}` }</h2>
             <Row className="mb-5 fs-5 w-25">
                 <CustomInput label="Возглавлял" placeholder="Введите имя" value={viking} setValue={setViking} disabled={!isDraft || is_superuser}/>
-                {isCompleted && <CustomInput label="Дата" value={formatDate(date)} disabled={true}/>}
+                {isCompleted && <CustomInput label="Дата" value={count} disabled={true}/>}
             </Row>
             <Row>
                 {expedition.places.length > 0 ? expedition.places.map((place:T_Place) => (

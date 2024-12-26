@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {T_Expedition, T_ExpeditionsFilters, T_Place} from "modules/types.ts";
-import {NEXT_YEAR, PREV_YEAR} from "modules/consts.ts";
+import {NEXT_MONTH, PREV_MONTH} from "modules/consts.ts";
 import {api} from "modules/api.ts";
 import {AsyncThunkConfig} from "@reduxjs/toolkit/dist/createAsyncThunk";
 import {AxiosResponse} from "axios";
@@ -21,8 +21,8 @@ const initialState:T_ExpeditionsSlice = {
     expeditions: [],
     filters: {
         status: 0,
-        date_formation_start: PREV_YEAR.toISOString().split('T')[0],
-        date_formation_end: NEXT_YEAR.toISOString().split('T')[0],
+        date_formation_start: PREV_MONTH.toISOString().split('T')[0],
+        date_formation_end: NEXT_MONTH.toISOString().split('T')[0],
         owner: ""
     },
     save_mm: false
@@ -32,6 +32,15 @@ export const fetchExpedition = createAsyncThunk<T_Expedition, string, AsyncThunk
     "expeditions/expedition",
     async function(expedition_id) {
         const response = await api.expeditions.expeditionsRead(expedition_id) as AxiosResponse<T_Expedition>
+        return response.data
+    }
+)
+
+export const fetchDraftExpedition = createAsyncThunk<T_Expedition, void, AsyncThunkConfig>(
+    "expeditions/expedition_draft",
+    async function(_, thunkAPI) {
+        const state = thunkAPI.getState()
+        const response = await api.expeditions.expeditionsRead(state.expeditions.expedition.id) as AxiosResponse<T_Expedition>
         return response.data
     }
 )
@@ -110,6 +119,14 @@ export const rejectExpedition = createAsyncThunk<void, string, AsyncThunkConfig>
     }
 )
 
+export const updatePlaceOrder = createAsyncThunk<void, string, AsyncThunkConfig>(
+    "collections/update_mm_value",
+    async function(place_id,thunkAPI) {
+        const state = thunkAPI.getState()
+        await api.expeditions.expeditionsUpdatePlaceUpdate(state.expeditions.expedition.id, place_id)
+    }
+)
+
 const expeditionsSlice = createSlice({
     name: 'expeditions',
     initialState: initialState,
@@ -130,6 +147,9 @@ const expeditionsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchExpedition.fulfilled, (state:T_ExpeditionsSlice, action: PayloadAction<T_Expedition>) => {
+            state.expedition = action.payload
+        });
+        builder.addCase(fetchDraftExpedition.fulfilled, (state:T_ExpeditionsSlice, action: PayloadAction<T_Expedition>) => {
             state.expedition = action.payload
         });
         builder.addCase(fetchExpeditions.fulfilled, (state:T_ExpeditionsSlice, action: PayloadAction<T_Expedition[]>) => {
