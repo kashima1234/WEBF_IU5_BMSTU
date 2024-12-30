@@ -61,7 +61,7 @@ export const fetchExpeditions = createAsyncThunk<T_Expedition[], object, AsyncTh
 )
 
 export const removePlaceFromDraftExpedition = createAsyncThunk<T_Place[], string, AsyncThunkConfig>(
-    "expeditions/remove_place",
+    "expeditions/remove_place",    "expeditions/expedition",
     async function(place_id, thunkAPI) {
         const state = thunkAPI.getState()
         const response = await api.expeditions.expeditionsDeletePlaceDelete(state.expeditions.expedition.id, place_id) as AxiosResponse<T_Place[]>

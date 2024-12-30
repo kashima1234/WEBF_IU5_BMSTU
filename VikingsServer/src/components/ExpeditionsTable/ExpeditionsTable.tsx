@@ -32,9 +32,9 @@ const ExpeditionsTable = ({expeditions}:Props) => {
                         <Col>
                             Дата формирования
                         </Col>
-                        {/* <Col>
+                        <Col>
                            Возглавлял
-                        </Col> */}
+                        </Col>
                         {!is_superuser &&
                             <Col>
                                 Действие

@@ -31,8 +31,8 @@ const PlacesTable = ({places}:Props) => {
     const columns = useMemo(
         () => [
             {
-                Header: '№',
-                accessor: 'id',
+                Header: "№",
+                accessor: "id",
             },
             {
                 Header: 'Название',
@@ -57,7 +57,12 @@ const PlacesTable = ({places}:Props) => {
                 Cell: ({ cell }) => (
                     <Button color="danger" onClick={() => handleDeletePlace(cell.row.values.id)}>Удалить</Button>
                 )
-            }
+            },
+            {
+                Header: "картинка",
+                accessor: "image",
+                Cell: ({value}) => <img src={value} width="140" height="64" />
+            },
         ],
         []
     )
