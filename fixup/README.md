@@ -3,35 +3,38 @@
 
 ![1](1.png)
 
- 
-2 - ПОЧЕМУ НЕ РАБОТАЕТ ФОРМИРОВАНИЕ? ЗАЯВКА Должать стать сформированной и перейти в список заявок
+-----
+
+- [X] [ПОЧЕМУ НЕ РАБОТАЕТ ФОРМИРОВАНИЕ? ЗАЯВКА Должать стать сформированной и перейти в список заявок](https://github.com/kashima1234/WEBF_IU5_BMSTU/blob/Real-time/VikingsServer/src/pages/ExpeditionPage/ExpeditionPage.tsx)
+
 <img src="v1.gif" />
 
-https://github.com/kashima1234/WEBF_IU5_BMSTU/blob/Real-time/VikingsServer/src/pages/ExpeditionPage/ExpeditionPage.tsx
+--------
 
 
-
-4- прислать в коде использование thunk, где ты их используешь?
-
+- [X] [прислать в коде использование thunk, где ты их используешь?](
+https://github.com/kashima1234/WEBF_IU5_BMSTU/blob/Real-time/VikingsServer/src/pages/ExpeditionPage/ExpeditionPage.tsx)
+- [X] [also](https://github.com/kashima1234/WEBF_IU5_BMSTU/blob/Real-time/VikingsServer/src/store/slices/expeditionsSlice.ts)
 ![2](2.png)
 
-https://github.com/kashima1234/WEBF_IU5_BMSTU/blob/Real-time/VikingsServer/src/pages/ExpeditionPage/ExpeditionPage.tsx
+__--------__
 
-https://github.com/kashima1234/WEBF_IU5_BMSTU/blob/Real-time/VikingsServer/src/store/slices/expeditionsSlice.ts
-
-5- - не работает завершении и Отклонение заявки
+- не работает завершении и Отклонение заявки
 <img src="v2.gif" />
 
-6 - список заявок: убрать дату созданеия, и дату завершения, но доавить поле Кто возглавлял
+--------
+
+ список заявок: убрать дату созданеия, и дату завершения, но доавить поле Кто возглавлял
 
 дату созданеия, и дату завершения has been deleted and been add возглавлял as well as 
 <img src="v2.gif" />
 
+-------
 
-7-  - таблице услуг нужны маленькие картинки. Кнопка удалить должна быть только в общей таблице
+- [X] [таблице услуг нужны маленькие картинки. Кнопка удалить должна быть только в общей таблице](https://github.com/kashima1234/WEBF_IU5_BMSTU/blob/Real-time/VikingsServer/src/components/PlacesTable/PlacesTable.tsx)
 ![3](3.png)
 
-https://github.com/kashima1234/WEBF_IU5_BMSTU/blob/Real-time/VikingsServer/src/components/PlacesTable/PlacesTable.tsx
+-------
 
-8 - показать содержимое редис в командной строке компьютера, а не в docker
+показать содержимое редис в командной строке компьютера, а не в docker
 ![3](4.png)
