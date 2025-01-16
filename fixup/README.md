@@ -1,9 +1,8 @@
 - [X] [НЕ НАДО САМОМУ ДЕЛАТЬ ПОРЯДОК, ТЫ ПРОСТО НАЖИМАЕШЬ КНОПКУ ВНИЗ и ОН САМ СЛЕДУЮЩУЮ С ПРЕДЫДУЩЕЙ.
-ДОЛЖНА БЫТЬ СОРТИРОВКА "PUT м-м. Поменять порядок (down) для верхней услуги в заявке: было 1-2-3, стало 2-1-3](https://github.com/kashima1234/WEBF_IU5_BMSTU/tree/frontend/SPA)
+ДОЛЖНА БЫТЬ СОРТИРОВКА "PUT м-м. Поменять порядок (down) для верхней услуги в заявке: было 1-2-3, стало 2-1-3](https://github.com/kashima1234/WEBF_IU5_BMSTU/blob/Real-time/VikingsServer/src/components/PlaceCard/PlaceCard.tsx)
 
 ![1](1.png)
 
-- [x] [](https://github.com/kashima1234/WEBF_IU5_BMSTU/blob/Real-time/VikingsServer/src/components/PlaceCard/PlaceCard.tsx)
  
 2 - ПОЧЕМУ НЕ РАБОТАЕТ ФОРМИРОВАНИЕ? ЗАЯВКА Должать стать сформированной и перейти в список заявок
 <img src="v1.gif" />
